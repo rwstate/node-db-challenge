@@ -18,6 +18,12 @@ router.get('/', (req,res) => {
     .catch(err => res.status(500).json({errMsg: err}))
 })
 
+router.get('/:id', (req, res) => {
+  Projects.getProject(req.params.id)
+    .then(project => {res.status(200).json(project)})
+    .catch(err => res.status(500).json({errMsg: err}))
+})
+
 router.post('/', (req,res) => {
   Projects.addProject(req.body)
     .then(project => res.status(200).json(project))
