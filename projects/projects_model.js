@@ -23,16 +23,22 @@ function getProject(id) {
                 .where({project_id:id})
                   .then(resourceList => {
                     filteredTasks = taskList.map(task => {
+                      task.project_id = undefined
                       if (task.completed) {
                         return {...task, completed: true}
                       } else {
                         return {...task, completed: false}
                       }
                     })
+                    filteredResources = resourceList.map(resource => {
+                      resource.project_id = undefined
+                      resource.resource_id = undefined
+                      return resource
+                    })
                     if (project.completed) {
-                      return {...project, completed: true, tasks:filteredTasks, resources: resourceList}
+                      return {...project, completed: true, tasks:filteredTasks, resources: filteredResources}
                     } else {
-                      return {...project, completed: false, tasks:filteredTasks, resources: resourceList}
+                      return {...project, completed: false, tasks:filteredTasks, resources: filteredResources}
                     }
                   })
               )
