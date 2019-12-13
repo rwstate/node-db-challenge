@@ -19,7 +19,7 @@ exports.up = function(knex) {
         .notNullable()
         .references('id')
         .inTable('project')
-      tbl.text('description', 512).notNullable()
+      tbl.text('task_description', 512).notNullable()
       tbl.text('notes', 512)
       tbl.integer('completed').defaultTo(0).notNullable()
     })

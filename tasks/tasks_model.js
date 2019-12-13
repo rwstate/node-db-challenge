@@ -1,7 +1,10 @@
 const db = require('../data/dbConfig.js')
 
 function getTasks() {
-  return db('task')
+  return (
+    db('task')
+    .innerJoin('project', 'project.id', 'task.project_id')
+  )
 }
 
 function addTask(task) {
